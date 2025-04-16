@@ -1,11 +1,15 @@
 {
   "name": "eslint-plugin-svelte-sort-attributes",
   "type": "module",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "author": "Miquel De Domingo",
   "repository": "https://github.com/mikededo/eslint-plugin-svelte-sort-attributes",
-  "keywords": ["eslint", "eslint-plugin", "svelte"],
+  "keywords": [
+    "eslint",
+    "eslint-plugin",
+    "svelte"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
