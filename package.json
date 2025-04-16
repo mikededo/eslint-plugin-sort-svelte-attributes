@@ -30,13 +30,14 @@
     "typescript": "^5"
   },
   "dependencies": {
-    "@typescript-eslint/types": "^8.9.0",
-    "@typescript-eslint/utils": "^8.9.0",
-    "minimatch": "^9.0.5",
+    "@typescript-eslint/types": "8.9.0",
+    "@typescript-eslint/utils": "8.9.0",
+    "minimatch": "9.0.5",
     "natural-compare-lite": "1.4.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "4.12.0",
+    "@svitejs/changesets-changelog-github-compact": "1.2.0",
     "@types/natural-compare-lite": "1.4.2",
     "@types/node": "22.14.1",
     "@typescript-eslint/rule-tester": "8.30.1",
