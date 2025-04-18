@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "jsx": "preserve",
+    "lib": ["es2015", "es2017", "esnext"],
+    "experimentalDecorators": true,
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true
+  },
+  "include": [
+    "../fixtures/file.svelte",
+    "../fixtures/file.astro",
+    "../fixtures/react.tsx",
+    "../fixtures/file.vue",
+    "../fixtures/file.ts"
+  ]
+}
+

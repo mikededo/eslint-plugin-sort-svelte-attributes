@@ -54,6 +54,7 @@ type Options<T extends string[]> = [
     type: 'alphabetical' | 'line-length' | 'natural';
   }>
 ];
+
 const getGroupName = (context: Context, attribute: GroupNameAttribute) => {
   if (attribute.key.type === 'SvelteSpecialDirectiveKey') {
     return context.sourceCode.text.slice(...attribute.key.range);

@@ -20,7 +20,7 @@ describe(ruleName, () => {
         parser: {
           project: './tsconfig.json',
           ts: typescriptParser,
-          tsconfigRootDir: path.join(__dirname, './fixtures')
+          tsconfigRootDir: path.join(__dirname, '../fixtures')
         }
       }
     }
@@ -90,10 +90,13 @@ describe(ruleName, () => {
       }
     );
 
-    ruleTester.run(`${ruleName}(${type}): works with spread attributes`, rule, {
-      invalid: [
-        {
-          code: dedent`
+    ruleTester.run(
+      `${ruleName}(${type}): works with spread attributes`,
+      rule,
+      {
+        invalid: [
+          {
+            code: dedent`
               <script>
                 import Component from '../file.svelte'
 
@@ -102,18 +105,18 @@ describe(ruleName, () => {
 
               <Component c {...data} b="b" a="aa" />
             `,
-          errors: [
-            {
-              data: {
-                left: 'b',
-                right: 'a'
-              },
-              messageId: 'unexpectedSvelteAttributesOrder'
-            }
-          ],
-          filename: 'file.svelte',
-          options: [options],
-          output: dedent`
+            errors: [
+              {
+                data: {
+                  left: 'b',
+                  right: 'a'
+                },
+                messageId: 'unexpectedSvelteAttributesOrder'
+              }
+            ],
+            filename: 'file.svelte',
+            options: [options],
+            output: dedent`
               <script>
                 import Component from '../file.svelte'
 
@@ -122,11 +125,11 @@ describe(ruleName, () => {
 
               <Component c {...data} a="aa" b="b" />
             `
-        }
-      ],
-      valid: [
-        {
-          code: dedent`
+          }
+        ],
+        valid: [
+          {
+            code: dedent`
               <script>
                 import Component from '../file.svelte'
 
@@ -135,16 +138,20 @@ describe(ruleName, () => {
 
               <Component c {...data} a="aa" b="b" />
             `,
-          filename: 'file.svelte',
-          options: [options]
-        }
-      ]
-    });
+            filename: 'file.svelte',
+            options: [options]
+          }
+        ]
+      }
+    );
 
-    ruleTester.run(`${ruleName}(${type}): works with directives`, rule, {
-      invalid: [
-        {
-          code: dedent`
+    ruleTester.run(
+      `${ruleName}(${type}): works with directives`,
+      rule,
+      {
+        invalid: [
+          {
+            code: dedent`
             <script>
               import { clickOutside } from './click-outside.js'
               import Component from './file.svelte'
@@ -157,18 +164,18 @@ describe(ruleName, () => {
               <Component use:clickOutside on:outClick={() => (s = false)} />
             {/if}
           `,
-          errors: [
-            {
-              data: {
-                left: 'use:clickOutside',
-                right: 'on:outClick'
-              },
-              messageId: 'unexpectedSvelteAttributesOrder'
-            }
-          ],
-          filename: 'file.svelte',
-          options: [options],
-          output: dedent`
+            errors: [
+              {
+                data: {
+                  left: 'use:clickOutside',
+                  right: 'on:outClick'
+                },
+                messageId: 'unexpectedSvelteAttributesOrder'
+              }
+            ],
+            filename: 'file.svelte',
+            options: [options],
+            output: dedent`
             <script>
               import { clickOutside } from './click-outside.js'
               import Component from './file.svelte'
@@ -181,11 +188,11 @@ describe(ruleName, () => {
               <Component on:outClick={() => (s = false)} use:clickOutside />
             {/if}
           `
-        }
-      ],
-      valid: [
-        {
-          code: dedent`
+          }
+        ],
+        valid: [
+          {
+            code: dedent`
             <script>
               import { clickOutside } from './click-outside.js'
               import Component from './file.svelte'
@@ -198,11 +205,12 @@ describe(ruleName, () => {
               <Component on:outClick={() => (s = false)} use:clickOutside />
             {/if}
           `,
-          filename: 'file.svelte',
-          options: [options]
-        }
-      ]
-    });
+            filename: 'file.svelte',
+            options: [options]
+          }
+        ]
+      }
+    );
 
     ruleTester.run(
       `${ruleName}(${type}): allows to set shorthand attributes position`,
@@ -381,10 +389,13 @@ describe(ruleName, () => {
       }
     );
 
-    ruleTester.run(`${ruleName}(${type}): allows to set custom groups`, rule, {
-      invalid: [
-        {
-          code: dedent`
+    ruleTester.run(
+      `${ruleName}(${type}): allows to set custom groups`,
+      rule,
+      {
+        invalid: [
+          {
+            code: dedent`
             <script>
               import Component from '~/file.svelte'
             </script>
@@ -398,29 +409,29 @@ describe(ruleName, () => {
               }}
             />
           `,
-          errors: [
-            {
-              data: {
-                left: 'b',
-                leftGroup: 'unknown',
-                right: 'c',
-                rightGroup: 'ce'
-              },
-              messageId: 'unexpectedSvelteAttributesGroupOrder'
-            }
-          ],
-          filename: 'file.svelte',
-          options: [
-            {
-              ...options,
-              customGroups: {
-                ce: ['c', 'e'],
-                d: 'd'
-              },
-              groups: ['ce', 'd', 'unknown']
-            }
-          ],
-          output: dedent`
+            errors: [
+              {
+                data: {
+                  left: 'b',
+                  leftGroup: 'unknown',
+                  right: 'c',
+                  rightGroup: 'ce'
+                },
+                messageId: 'unexpectedSvelteAttributesGroupOrder'
+              }
+            ],
+            filename: 'file.svelte',
+            options: [
+              {
+                ...options,
+                customGroups: {
+                  ce: ['c', 'e'],
+                  d: 'd'
+                },
+                groups: ['ce', 'd', 'unknown']
+              }
+            ],
+            output: dedent`
             <script>
               import Component from '~/file.svelte'
             </script>
@@ -434,11 +445,11 @@ describe(ruleName, () => {
               b="bb"
             />
           `
-        }
-      ],
-      valid: [
-        {
-          code: dedent`
+          }
+        ],
+        valid: [
+          {
+            code: dedent`
             <script>
               import Component from '~/file.svelte'
             </script>
@@ -452,20 +463,21 @@ describe(ruleName, () => {
               b="bb"
             />
           `,
-          filename: 'file.svelte',
-          options: [
-            {
-              ...options,
-              customGroups: {
-                ce: ['c', 'e'],
-                d: 'd'
-              },
-              groups: ['ce', 'd', 'unknown']
-            }
-          ]
-        }
-      ]
-    });
+            filename: 'file.svelte',
+            options: [
+              {
+                ...options,
+                customGroups: {
+                  ce: ['c', 'e'],
+                  d: 'd'
+                },
+                groups: ['ce', 'd', 'unknown']
+              }
+            ]
+          }
+        ]
+      }
+    );
 
     ruleTester.run(
       `${ruleName}(${type}): allows to use regex matcher for custom groups`,
@@ -625,10 +637,13 @@ describe(ruleName, () => {
       }
     );
 
-    ruleTester.run(`${ruleName}(${type}): works with spread attributes`, rule, {
-      invalid: [
-        {
-          code: dedent`
+    ruleTester.run(
+      `${ruleName}(${type}): works with spread attributes`,
+      rule,
+      {
+        invalid: [
+          {
+            code: dedent`
               <script>
                 import Component from '../file.svelte'
 
@@ -637,18 +652,18 @@ describe(ruleName, () => {
 
               <Component c {...data} b="b" a="aa" />
             `,
-          errors: [
-            {
-              data: {
-                left: 'b',
-                right: 'a'
-              },
-              messageId: 'unexpectedSvelteAttributesOrder'
-            }
-          ],
-          filename: 'file.svelte',
-          options: [options],
-          output: dedent`
+            errors: [
+              {
+                data: {
+                  left: 'b',
+                  right: 'a'
+                },
+                messageId: 'unexpectedSvelteAttributesOrder'
+              }
+            ],
+            filename: 'file.svelte',
+            options: [options],
+            output: dedent`
               <script>
                 import Component from '../file.svelte'
 
@@ -657,11 +672,11 @@ describe(ruleName, () => {
 
               <Component c {...data} a="aa" b="b" />
             `
-        }
-      ],
-      valid: [
-        {
-          code: dedent`
+          }
+        ],
+        valid: [
+          {
+            code: dedent`
               <script>
                 import Component from '../file.svelte'
 
@@ -670,16 +685,20 @@ describe(ruleName, () => {
 
               <Component c {...data} a="aa" b="b" />
             `,
-          filename: 'file.svelte',
-          options: [options]
-        }
-      ]
-    });
+            filename: 'file.svelte',
+            options: [options]
+          }
+        ]
+      }
+    );
 
-    ruleTester.run(`${ruleName}(${type}): works with directives`, rule, {
-      invalid: [
-        {
-          code: dedent`
+    ruleTester.run(
+      `${ruleName}(${type}): works with directives`,
+      rule,
+      {
+        invalid: [
+          {
+            code: dedent`
             <script>
               import { clickOutside } from './click-outside.js'
               import Component from './file.svelte'
@@ -692,18 +711,18 @@ describe(ruleName, () => {
               <Component use:clickOutside on:outClick={() => (s = false)} />
             {/if}
           `,
-          errors: [
-            {
-              data: {
-                left: 'use:clickOutside',
-                right: 'on:outClick'
-              },
-              messageId: 'unexpectedSvelteAttributesOrder'
-            }
-          ],
-          filename: 'file.svelte',
-          options: [options],
-          output: dedent`
+            errors: [
+              {
+                data: {
+                  left: 'use:clickOutside',
+                  right: 'on:outClick'
+                },
+                messageId: 'unexpectedSvelteAttributesOrder'
+              }
+            ],
+            filename: 'file.svelte',
+            options: [options],
+            output: dedent`
             <script>
               import { clickOutside } from './click-outside.js'
               import Component from './file.svelte'
@@ -716,11 +735,11 @@ describe(ruleName, () => {
               <Component on:outClick={() => (s = false)} use:clickOutside />
             {/if}
           `
-        }
-      ],
-      valid: [
-        {
-          code: dedent`
+          }
+        ],
+        valid: [
+          {
+            code: dedent`
             <script>
               import { clickOutside } from './click-outside.js'
               import Component from './file.svelte'
@@ -733,11 +752,12 @@ describe(ruleName, () => {
               <Component on:outClick={() => (s = false)} use:clickOutside />
             {/if}
           `,
-          filename: 'file.svelte',
-          options: [options]
-        }
-      ]
-    });
+            filename: 'file.svelte',
+            options: [options]
+          }
+        ]
+      }
+    );
 
     ruleTester.run(
       `${ruleName}(${type}): allows to set shorthand attributes position`,
@@ -916,10 +936,13 @@ describe(ruleName, () => {
       }
     );
 
-    ruleTester.run(`${ruleName}(${type}): allows to set custom groups`, rule, {
-      invalid: [
-        {
-          code: dedent`
+    ruleTester.run(
+      `${ruleName}(${type}): allows to set custom groups`,
+      rule,
+      {
+        invalid: [
+          {
+            code: dedent`
             <script>
               import Component from '~/file.svelte'
             </script>
@@ -933,29 +956,29 @@ describe(ruleName, () => {
               }}
             />
           `,
-          errors: [
-            {
-              data: {
-                left: 'b',
-                leftGroup: 'unknown',
-                right: 'c',
-                rightGroup: 'ce'
-              },
-              messageId: 'unexpectedSvelteAttributesGroupOrder'
-            }
-          ],
-          filename: 'file.svelte',
-          options: [
-            {
-              ...options,
-              customGroups: {
-                ce: ['c', 'e'],
-                d: 'd'
-              },
-              groups: ['ce', 'd', 'unknown']
-            }
-          ],
-          output: dedent`
+            errors: [
+              {
+                data: {
+                  left: 'b',
+                  leftGroup: 'unknown',
+                  right: 'c',
+                  rightGroup: 'ce'
+                },
+                messageId: 'unexpectedSvelteAttributesGroupOrder'
+              }
+            ],
+            filename: 'file.svelte',
+            options: [
+              {
+                ...options,
+                customGroups: {
+                  ce: ['c', 'e'],
+                  d: 'd'
+                },
+                groups: ['ce', 'd', 'unknown']
+              }
+            ],
+            output: dedent`
             <script>
               import Component from '~/file.svelte'
             </script>
@@ -969,11 +992,11 @@ describe(ruleName, () => {
               b="bb"
             />
           `
-        }
-      ],
-      valid: [
-        {
-          code: dedent`
+          }
+        ],
+        valid: [
+          {
+            code: dedent`
             <script>
               import Component from '~/file.svelte'
             </script>
@@ -987,20 +1010,21 @@ describe(ruleName, () => {
               b="bb"
             />
           `,
-          filename: 'file.svelte',
-          options: [
-            {
-              ...options,
-              customGroups: {
-                ce: ['c', 'e'],
-                d: 'd'
-              },
-              groups: ['ce', 'd', 'unknown']
-            }
-          ]
-        }
-      ]
-    });
+            filename: 'file.svelte',
+            options: [
+              {
+                ...options,
+                customGroups: {
+                  ce: ['c', 'e'],
+                  d: 'd'
+                },
+                groups: ['ce', 'd', 'unknown']
+              }
+            ]
+          }
+        ]
+      }
+    );
   });
 
   describe(`${ruleName}: sorting by line length`, () => {
@@ -1066,10 +1090,13 @@ describe(ruleName, () => {
       }
     );
 
-    ruleTester.run(`${ruleName}(${type}): works with spread attributes`, rule, {
-      invalid: [
-        {
-          code: dedent`
+    ruleTester.run(
+      `${ruleName}(${type}): works with spread attributes`,
+      rule,
+      {
+        invalid: [
+          {
+            code: dedent`
               <script>
                 import Component from '../file.svelte'
 
@@ -1078,18 +1105,18 @@ describe(ruleName, () => {
 
               <Component c {...data} b="b" a="aa" />
             `,
-          errors: [
-            {
-              data: {
-                left: 'b',
-                right: 'a'
-              },
-              messageId: 'unexpectedSvelteAttributesOrder'
-            }
-          ],
-          filename: 'file.svelte',
-          options: [options],
-          output: dedent`
+            errors: [
+              {
+                data: {
+                  left: 'b',
+                  right: 'a'
+                },
+                messageId: 'unexpectedSvelteAttributesOrder'
+              }
+            ],
+            filename: 'file.svelte',
+            options: [options],
+            output: dedent`
               <script>
                 import Component from '../file.svelte'
 
@@ -1098,11 +1125,11 @@ describe(ruleName, () => {
 
               <Component c {...data} a="aa" b="b" />
             `
-        }
-      ],
-      valid: [
-        {
-          code: dedent`
+          }
+        ],
+        valid: [
+          {
+            code: dedent`
               <script>
                 import Component from '../file.svelte'
 
@@ -1111,16 +1138,20 @@ describe(ruleName, () => {
 
               <Component c {...data} a="aa" b="b" />
             `,
-          filename: 'file.svelte',
-          options: [options]
-        }
-      ]
-    });
+            filename: 'file.svelte',
+            options: [options]
+          }
+        ]
+      }
+    );
 
-    ruleTester.run(`${ruleName}(${type}): works with directives`, rule, {
-      invalid: [
-        {
-          code: dedent`
+    ruleTester.run(
+      `${ruleName}(${type}): works with directives`,
+      rule,
+      {
+        invalid: [
+          {
+            code: dedent`
             <script>
               import { clickOutside } from './click-outside.js'
               import Component from './file.svelte'
@@ -1133,18 +1164,18 @@ describe(ruleName, () => {
               <Component on:outClick={() => (s = false)} use:clickOutside />
             {/if}
           `,
-          errors: [
-            {
-              data: {
-                left: 'a',
-                right: 'on:click'
-              },
-              messageId: 'unexpectedSvelteAttributesOrder'
-            }
-          ],
-          filename: 'file.svelte',
-          options: [options],
-          output: dedent`
+            errors: [
+              {
+                data: {
+                  left: 'a',
+                  right: 'on:click'
+                },
+                messageId: 'unexpectedSvelteAttributesOrder'
+              }
+            ],
+            filename: 'file.svelte',
+            options: [options],
+            output: dedent`
             <script>
               import { clickOutside } from './click-outside.js'
               import Component from './file.svelte'
@@ -1157,11 +1188,11 @@ describe(ruleName, () => {
               <Component on:outClick={() => (s = false)} use:clickOutside />
             {/if}
           `
-        }
-      ],
-      valid: [
-        {
-          code: dedent`
+          }
+        ],
+        valid: [
+          {
+            code: dedent`
             <script>
               import { clickOutside } from './click-outside.js'
               import Component from './file.svelte'
@@ -1174,11 +1205,12 @@ describe(ruleName, () => {
               <Component on:outClick={() => (s = false)} use:clickOutside />
             {/if}
           `,
-          filename: 'file.svelte',
-          options: [options]
-        }
-      ]
-    });
+            filename: 'file.svelte',
+            options: [options]
+          }
+        ]
+      }
+    );
 
     ruleTester.run(
       `${ruleName}(${type}): allows to set shorthand attributes position`,
@@ -1357,10 +1389,13 @@ describe(ruleName, () => {
       }
     );
 
-    ruleTester.run(`${ruleName}(${type}): allows to set custom groups`, rule, {
-      invalid: [
-        {
-          code: dedent`
+    ruleTester.run(
+      `${ruleName}(${type}): allows to set custom groups`,
+      rule,
+      {
+        invalid: [
+          {
+            code: dedent`
             <script>
               import Component from '~/file.svelte'
             </script>
@@ -1374,29 +1409,29 @@ describe(ruleName, () => {
               }}
             />
           `,
-          errors: [
-            {
-              data: {
-                left: 'b',
-                leftGroup: 'unknown',
-                right: 'c',
-                rightGroup: 'ce'
-              },
-              messageId: 'unexpectedSvelteAttributesGroupOrder'
-            }
-          ],
-          filename: 'file.svelte',
-          options: [
-            {
-              ...options,
-              customGroups: {
-                ce: ['c', 'e'],
-                d: 'd'
-              },
-              groups: ['ce', 'd', 'unknown']
-            }
-          ],
-          output: dedent`
+            errors: [
+              {
+                data: {
+                  left: 'b',
+                  leftGroup: 'unknown',
+                  right: 'c',
+                  rightGroup: 'ce'
+                },
+                messageId: 'unexpectedSvelteAttributesGroupOrder'
+              }
+            ],
+            filename: 'file.svelte',
+            options: [
+              {
+                ...options,
+                customGroups: {
+                  ce: ['c', 'e'],
+                  d: 'd'
+                },
+                groups: ['ce', 'd', 'unknown']
+              }
+            ],
+            output: dedent`
             <script>
               import Component from '~/file.svelte'
             </script>
@@ -1410,11 +1445,11 @@ describe(ruleName, () => {
               b="bb"
             />
           `
-        }
-      ],
-      valid: [
-        {
-          code: dedent`
+          }
+        ],
+        valid: [
+          {
+            code: dedent`
             <script>
               import Component from '~/file.svelte'
             </script>
@@ -1428,20 +1463,21 @@ describe(ruleName, () => {
               b="bb"
             />
           `,
-          filename: 'file.svelte',
-          options: [
-            {
-              ...options,
-              customGroups: {
-                ce: ['c', 'e'],
-                d: 'd'
-              },
-              groups: ['ce', 'd', 'unknown']
-            }
-          ]
-        }
-      ]
-    });
+            filename: 'file.svelte',
+            options: [
+              {
+                ...options,
+                customGroups: {
+                  ce: ['c', 'e'],
+                  d: 'd'
+                },
+                groups: ['ce', 'd', 'unknown']
+              }
+            ]
+          }
+        ]
+      }
+    );
   });
 
   describe(`${ruleName}: validating group configuration`, () => {
@@ -1481,41 +1517,49 @@ describe(ruleName, () => {
   });
 
   describe(`${ruleName}: misc`, () => {
-    ruleTester.run(`${ruleName}: works only with .svelte files`, rule, {
-      invalid: [],
-      valid: [
-        {
-          code: dedent`
+    ruleTester.run(
+      `${ruleName}: works only with .svelte files`,
+      rule,
+      {
+        invalid: [],
+        valid: [
+          {
+            code: dedent`
             <Component c="c" b="bb" a="aaa" />
           `,
-          filename: 'component.ts',
-          options: [
-            {
-              order: 'desc',
-              type: 'line-length'
-            }
-          ]
-        }
-      ]
-    });
+            filename: 'component.ts',
+            options: [
+              {
+                order: 'desc',
+                type: 'line-length'
+              }
+            ]
+          }
+        ]
+      }
+    );
 
-    ruleTester.run(`${ruleName}: works with special directive keys`, rule, {
-      invalid: [],
-      valid: [
-        {
-          code: dedent`
+    ruleTester.run(
+      `${ruleName}: works with special directive keys`,
+      rule,
+      {
+        invalid: [],
+        valid: [
+          {
+            code: dedent`
             <svelte:element key={1} this={expression} />
           `,
-          filename: 'file.svelte',
-          options: [
-            {
-              order: 'asc',
-              type: 'alphabetical'
-            }
-          ]
-        }
-      ]
-    });
+            filename: 'file.svelte',
+            options: [
+              {
+                order: 'asc',
+                type: 'alphabetical'
+              }
+            ]
+          }
+        ]
+      }
+    );
   });
 });
 
