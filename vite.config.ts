@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   build: {
@@ -50,9 +50,7 @@ export default defineConfig({
     })
   ],
   test: {
-    coverage: {
-      all: false
-    },
+    coverage: { all: false },
     globals: true
   }
 });

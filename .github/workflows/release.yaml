@@ -1,0 +1,42 @@
+name: Release
+on:
+  push:
+    branches:
+      - main
+permissions: {}
+jobs:
+  release:
+    if: github.repository == 'mikededo/eslint-plugin-svelte-sort-attributes'
+    permissions:
+      contents: write # to create release
+      pull-requests: write # to create pull request (changesets/action)
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: oven-sh/setup-bun@v2
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org/
+      - name: Install
+        run: bun install --frozen-lockfile
+      - name: Capture New Release Version
+        run: |
+          bun changeset status --output=release.json
+          echo "NEW_VERSION=$(jq -r '.releases[0].newVersion' release.json)" >> "$GITHUB_ENV"
+          rm release.json
+      - name: Create PR release or publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          version: bun changeset version
+          publish: bun changeset publish
+          commit: "chore(release): v${{env.NEW_VERSION}}"
+          title: "chore(release): v${{env.NEW_VERSION}}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
