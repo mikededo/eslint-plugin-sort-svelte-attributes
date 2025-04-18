@@ -1,5 +1,15 @@
 # eslint-plugin-svelte-sort-attributes
 
+## 1.1.0
+
+### Minor Changes
+
+- Removed unused options ([#2](https://github.com/mikededo/eslint-plugin-svelte-sort-attributes/pull/2))
+
+### Patch Changes
+
+- Corrected dependency versions ([#2](https://github.com/mikededo/eslint-plugin-svelte-sort-attributes/pull/2))
+
 ## 1.0.0
 
 ### Major Changes
