@@ -1,5 +1,11 @@
 # eslint-plugin-svelte-sort-attributes
 
+## 1.1.3
+
+### Patch Changes
+
+- Add missing build script ([`f67395d`](https://github.com/mikededo/eslint-plugin-svelte-sort-attributes/commit/f67395dee5bcc10e99ba0771171a2f4bafdff4ea))
+
 ## 1.1.2
 
 ### Patch Changes
