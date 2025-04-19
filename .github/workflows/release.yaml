@@ -24,6 +24,8 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - name: Install
         run: bun install --frozen-lockfile
+      - name: Build
+        run: bun run build
       - name: Capture New Release Version
         run: |
           bun changeset status --output=release.json
