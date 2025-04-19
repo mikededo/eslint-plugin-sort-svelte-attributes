@@ -1,5 +1,11 @@
 # eslint-plugin-svelte-sort-attributes
 
+## 1.1.1
+
+### Patch Changes
+
+- Make package public ([`095d6cd`](https://github.com/mikededo/eslint-plugin-svelte-sort-attributes/commit/095d6cd09d23c679b3b2d848c6bea88ba8f5474a))
+
 ## 1.1.0
 
 ### Minor Changes
