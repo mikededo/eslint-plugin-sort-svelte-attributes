@@ -1,5 +1,11 @@
 # eslint-plugin-sort-svelte-attributes
 
+## 2.0.0
+
+### Major Changes
+
+- Package rename ([`b57ce38`](https://github.com/mikededo/eslint-plugin-sort-svelte-attributes/commit/b57ce3870633635c76d98b3981a8ab22bb36cb68))
+
 ## 1.1.2
 
 ### Patch Changes
