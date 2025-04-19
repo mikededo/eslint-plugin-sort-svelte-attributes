@@ -2,8 +2,14 @@
   "name": "eslint-plugin-svelte-sort-attributes",
   "type": "module",
   "version": "1.1.1",
-  "author": "Miquel De Domingo",
-  "repository": "https://github.com/mikededo/eslint-plugin-svelte-sort-attributes",
+  "author": "Miquel de Domingo",
+  "license": "MIT",
+  "homepage": "https://github.com/mikededo/eslint-plugin-svelte-sort-attributes",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikededo/eslint-plugin-svelte-sort-attributes.git"
+  },
+  "bugs": "https://github.com/mikededo/eslint-plugin-svelte-sort-attributes/issues",
   "keywords": [
     "eslint",
     "eslint-plugin",
