@@ -24,11 +24,11 @@ import svelteSortAttributes from 'eslint-plugin-svelte-sort-attributes';
 
 export default [
   {
-    plugins: { svelteSortAttributes, },
+    plugins: { 'svelte-sort-attributes': svelteSortAttributes },
     rules: {
       'svelte-sort-attributes/sort-attributes': [
         'error',
-        { type: 'natural', order: 'asc' },
+        { type: 'natural', order: 'asc' }
       ],
     },
   },
@@ -39,9 +39,7 @@ In your legacy `eslint` config:
 
 ```javascript
 module.exports = {
-  plugins: [
-    'svelte-sort-attributes',
-  ],
+  plugins: [ 'svelte-sort-attributes' ],
   rules: {
     'svelte-sort-attributes/sort-attributes': [
       'error',
