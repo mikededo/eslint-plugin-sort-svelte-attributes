@@ -1,5 +1,6 @@
 name: Release
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -21,7 +22,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          registry-url: https://registry.npmjs.org/
       - name: Install
         run: bun install --frozen-lockfile
       - name: Build
