@@ -1,5 +1,11 @@
 # eslint-plugin-svelte-sort-attributes
 
+## 1.1.4
+
+### Patch Changes
+
+- Add missing `files` prop ([`e702ed0`](https://github.com/mikededo/eslint-plugin-svelte-sort-attributes/commit/e702ed0be6d9d5b0c5337e24ef4ed35078412c90))
+
 ## 1.1.3
 
 ### Patch Changes
