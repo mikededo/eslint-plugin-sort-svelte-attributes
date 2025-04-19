@@ -1,5 +1,11 @@
 # eslint-plugin-svelte-sort-attributes
 
+## 1.1.2
+
+### Patch Changes
+
+- Minor changes ([`d13c6c5`](https://github.com/mikededo/eslint-plugin-svelte-sort-attributes/commit/d13c6c58574e9c2598137ccaec9de0d9d1ea04ca))
+
 ## 1.1.1
 
 ### Patch Changes
