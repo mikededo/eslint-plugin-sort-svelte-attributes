@@ -252,26 +252,26 @@ describe('getSettings', () => {
     expect(getSettings()).toEqual({});
   });
 
-  it('should return empty object when no svelte-sort-attributes settings are provided', () => {
+  it('should return empty object when no sort-svelte-attributes settings are provided', () => {
     expect(getSettings({ otherSetting: true })).toEqual({});
   });
 
-  it('should return svelte-sort-attributes settings when provided', () => {
+  it('should return sort-svelte-attributes settings when provided', () => {
     expect(
-      getSettings({ 'svelte-sort-attributes': { order: 'asc', type: 'natural' } })
+      getSettings({ 'sort-svelte-attributes': { order: 'asc', type: 'natural' } })
     ).toEqual({ order: 'asc', type: 'natural' });
   });
 
-  it('should throw for invalid svelte-sort-attributes settings', () => {
+  it('should throw for invalid sort-svelte-attributes settings', () => {
     expect(() => getSettings({
-      'svelte-sort-attributes': { invalidOption: true, order: 'asc' }
-    })).toThrow('Invalid \'svelte-sort-attributes\' setting(s): invalidOption');
+      'sort-svelte-attributes': { invalidOption: true, order: 'asc' }
+    })).toThrow('Invalid \'sort-svelte-attributes\' setting(s): invalidOption');
   });
 
-  it('should throw for multiple invalid svelte-sort-attributes settings', () => {
+  it('should throw for multiple invalid sort-svelte-attributes settings', () => {
     expect(() => getSettings({
-      'svelte-sort-attributes': { invalid1: true, invalid2: false }
-    })).toThrow('Invalid \'svelte-sort-attributes\' setting(s): invalid1, invalid2');
+      'sort-svelte-attributes': { invalid1: true, invalid2: false }
+    })).toThrow('Invalid \'sort-svelte-attributes\' setting(s): invalid1, invalid2');
   });
 });
 

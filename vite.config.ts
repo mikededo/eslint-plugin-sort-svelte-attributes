@@ -17,7 +17,7 @@ export default defineConfig({
         return `${directory}${entryName}.${format === 'es' ? 'mjs' : 'js'}`;
       },
       formats: ['cjs', 'es'],
-      name: 'eslint-plugin-svelte-sort-attributes'
+      name: 'eslint-plugin-sort-svelte-attributes'
     },
     minify: false,
     rollupOptions: {

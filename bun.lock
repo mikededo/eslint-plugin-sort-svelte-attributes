@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "eslint-plugin-svelte-sort-attributes",
+      "name": "eslint-plugin-sort-svelte-attributes",
       "dependencies": {
         "@typescript-eslint/types": "^8.9.0",
         "@typescript-eslint/utils": "^8.9.0",

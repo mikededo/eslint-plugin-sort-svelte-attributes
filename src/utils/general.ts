@@ -101,7 +101,7 @@ export const pairwise = <T>(
 export const getSettings = (
   settings: TSESLint.SharedConfigurationSettings = {}
 ): Settings => {
-  if (!settings['svelte-sort-attributes']) {
+  if (!settings['sort-svelte-attributes']) {
     return {};
   }
 
@@ -122,15 +122,15 @@ export const getSettings = (
     );
   };
 
-  const pluginSettings = settings['svelte-sort-attributes'] as Record<string, unknown>;
+  const pluginSettings = settings['sort-svelte-attributes'] as Record<string, unknown>;
   const invalidOptions = getInvalidOptions(pluginSettings);
   if (invalidOptions.length) {
     throw new Error(
-      `Invalid 'svelte-sort-attributes' setting(s): ${invalidOptions.join(', ')}`
+      `Invalid 'sort-svelte-attributes' setting(s): ${invalidOptions.join(', ')}`
     );
   }
 
-  return settings['svelte-sort-attributes'] as Settings;
+  return settings['sort-svelte-attributes'] as Settings;
 };
 
 export const complete = <T extends { [key: string]: unknown }>(

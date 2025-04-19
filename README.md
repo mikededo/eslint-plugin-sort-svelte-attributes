@@ -1,4 +1,4 @@
-# eslint-plugin-svelte-sort-attributes
+# eslint-plugin-sort-svelte-attributes
 
 > DISCLAIMER
 >
@@ -14,19 +14,19 @@
 With your package manager:
 
 ```sh
-bun add -d eslint-plugin-svelte-sort-attributes
+bun add -d eslint-plugin-sort-svelte-attributes
 
 ```
 In your flat `eslint` config:
 
 ```javascript
-import svelteSortAttributes from 'eslint-plugin-svelte-sort-attributes';
+import sortSvelteAttributes from 'eslint-plugin-sort-svelte-attributes';
 
 export default [
   {
-    plugins: { svelteSortAttributes, },
+    plugins: { sortSvelteAttributes },
     rules: {
-      'svelte-sort-attributes/sort-attributes': [
+      'sort-svelte-attributes/sort-attributes': [
         'error',
         { type: 'natural', order: 'asc' },
       ],
@@ -40,10 +40,10 @@ In your legacy `eslint` config:
 ```javascript
 module.exports = {
   plugins: [
-    'svelte-sort-attributes',
+    'sort-svelte-attributes',
   ],
   rules: {
-    'svelte-sort-attributes/sort-attributes': [
+    'sort-svelte-attributes/sort-attributes': [
       'error',
       { type: 'natural', order: 'asc' }
     ]

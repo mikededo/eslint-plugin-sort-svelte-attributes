@@ -6,7 +6,7 @@ on:
 permissions: {}
 jobs:
   release:
-    if: github.repository == 'mikededo/eslint-plugin-svelte-sort-attributes'
+    if: github.repository == 'mikededo/eslint-plugin-sort-svelte-attributes'
     permissions:
       contents: write # to create release
       pull-requests: write # to create pull request (changesets/action)
